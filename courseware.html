@@ -1,0 +1,118 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courseware & Shopping Cart</title>
+    <link rel="stylesheet" href="styles.css"> <!-- 假设styles.css包含了所有必要的样式 -->
+    <!-- 如果shoppingcart.css和styles.css有冲突，需要合并或调整样式 -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Homepage</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="courseware.html">Courseware</a></li>
+                <li><a href="enroll.html">Enroll</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                
+            </ul>
+        </nav>
+        <h1>Courseware & Shopping Cart</h1> <!-- 可根据需要修改标题 -->
+    </header>
+    <main>
+        <section id="courseware-list">
+            <!-- 保留8个商品 -->
+            <div class="course-item">
+                <h3>Cybersecurity Certification Training Package</h3>
+                <p>Detailed Description: Designed for students and IT professionals seeking certification in cybersecurity. It covers fundamental concepts, common attack methods, defensive strategies, cryptography, and includes practical case studies and hands-on labs for better understanding.</p>
+                <button onclick="addToCart('Cybersecurity Certification Training Package', 799)">Add to Cart ($799)</button>
+            </div>
+            <div class="course-item">
+                <h3>Project Management & Leadership Development Package</h3>
+                <p>Detailed Description: Aimed at enhancing project management skills and leadership capabilities for project managers and team leaders. Content includes project planning, resource management, progress monitoring, risk assessment, and communication skills. Additionally, it offers a series of courses on leadership development to improve decision-making and teamwork abilities.</p>
+                <button onclick="addToCart('Project Management & Leadership Development Package', 1199)">Add to Cart ($1199)</button>
+            </div>
+            <div class="course-item">
+                <h3>Business Management Practice Training Package</h3>
+                <p>Detailed Description: Suitable for small business owners, managers, and students aiming for growth in the business sector. It covers market research, marketing strategies, human resource management, financial management, and more. The goal is to provide comprehensive business management knowledge and skills to adapt to evolving market conditions.</p>
+                <button onclick="addToCart('Business Management Practice Training Package', 899)">Add to Cart ($899)</button>
+            </div>
+            <div class="course-item">
+                <h3>Software Development & Programming Skills Package</h3>
+                <p>Detailed Description: Targeted at software developers and programming enthusiasts, offering a wide range of courses on various programming languages and tools. From basic syntax to advanced data structures, algorithms, and project management, students can choose courses based on their interests and career goals.</p>
+                <button onclick="addToCart('Software Development & Programming Skills Package', 1499)">Add to Cart ($1499)</button>
+            </div>
+            <div class="course-item">
+                <h3>Accounting & Finance Fundamentals Package</h3>
+                <p>Detailed Description: Provides a solid foundation in accounting and finance for beginners. Content includes basic bookkeeping skills, financial statement analysis, cost control, budget management, and more. The aim is to build a strong financial foundation for future career development.</p>
+                <button onclick="addToCart('Accounting & Finance Fundamentals Package', 699)">Add to Cart ($699)</button>
+            </div>
+            <div class="course-item">
+                <h3>Hotel Management & Service Operations Package</h3>
+                <p>Detailed Description: Designed for professionals and students in hotel management and the service industry, covering fundamental theories and practical applications of hotel management. From room reservations, customer service, team management, to marketing, it aims to enhance students' overall competence to become excellent hotel managers.</p>
+                <button onclick="addToCart('Hotel Management & Service Operations Package', 999)">Add to Cart ($999)</button>
+            </div>
+            <div class="course-item">
+                <h3>Digital Marketing & Social Media Package</h3>
+                <p>Detailed Description: Digital marketing is an indispensable marketing tool in today's society. This package offers a series of courses on digital marketing and social media promotion, including SEO optimization, online advertising management, social media content creation, and more. It aims to equip students with the basic concepts and strategies of digital marketing to meet current market demands.</p>
+                <button onclick="addToCart('Digital Marketing & Social Media Package', 1099)">Add to Cart ($1099)</button>
+            </div>
+            <!-- 移除或注释掉其他商品 -->
+        </section>
+ 
+        <!-- 购物车部分 -->
+        <section id="cart" class="cart-contents">
+            <h2>Your Cart</h2>
+            <div id="cart-items">
+                <!-- Cart items will be displayed here by JavaScript -->
+            </div>
+            <div id="cart-total">
+                <!-- Total price will be displayed here by JavaScript -->
+            </div>
+            <button onclick="checkout()">Checkout</button> <!-- 添加到购物车的按钮 -->
+        </section>
+    </main>
+ 
+    <footer>
+        <!-- Footer content can be added here -->
+    </footer>
+ 
+    <script src="script.js"></script> <!-- 假设script.js包含了addToCart和checkout等函数 -->
+    <script src="cart.js"></script> <!-- 假设cart.js包含了处理购物车显示和计算总价的逻辑 -->
+    <script>
+        // Display the cart items and total price on the cart page
+        window.onload = function() {
+            let cartItemsDiv = document.getElementById('cart-items');
+            let cartTotalDiv = document.getElementById('cart-total');
+            let total = 0;
+ 
+            // Clear previous content
+            cartItemsDiv.innerHTML = '';
+ 
+            // 假设cart是一个全局变量，存储了购物车中的商品
+            // 这里需要确保cart在script.js或其他地方被正确初始化和更新
+            if (cart && cart.length > 0) {
+                cart.forEach(item => {
+                    let itemDiv = document.createElement('div');
+                    itemDiv.classList.add('cart-item');
+                    itemDiv.innerHTML = `
+                        <h3>${item.name}</h3>
+                        <p>Price: $${item.price}</p>
+                        <p>Quantity: ${item.quantity}</p>
+                        <hr>
+                    `;
+                    cartItemsDiv.appendChild(itemDiv);
+ 
+                    // Calculate the total price
+                    total += item.price * item.quantity;
+                });
+            }
+ 
+            // Display the total price
+            cartTotalDiv.innerHTML = `<h2>Total: $${total.toFixed(2)}</h2>`;
+        };
+    </script>
+</body>
+</html>
